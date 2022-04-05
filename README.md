@@ -16,20 +16,36 @@ To accomplish this task, you will work through the following steps:
 1. [Deploy the Order Management App](#deploy-the-order-management-app)
 1. [Deploy the Customer API and Database](#deploy-the-customer-api-and-database)
 1. [Deploy the Order API and Database](#deploy-the-order-api-and-database)
-1. [Deploy the Order Processing Pipeline]
+1. [Deploy the Order Processing Pipeline](#deploy-the-order-processing-pipeline)
 
-## Repository Setup
+## Prerequisites
+
+### Fork the Repo
 
 If the origin repository has not been [forked into your personal GitHub account or your orgnaization's GitHub Organization](https://github.com/joelwaymack/order-management-java/fork), please do so before completing any additional steps.
 
-## Dev Environment Setup
+### Dev Environment Setup
 
-To work effectively you'll need a fully functioning development environment. To keep from having to install a lot of dependencies, a GitHub codespace has been configured for your use. (These steps assume that the original repo has been forked into your GitHub organization.) Follow the steps below to set up your environment:
+To work effectively you'll need a fully functioning development environment. You have two options: install the dependencies locally on your machine or utilize a GitHub Codespace. The recommended approach is to use a GitHub Codespace but not all GitHub personal accounts or Organizations have them enabled.
 
 1. In GitHub, create a new branch with your name or a custom identifier.
-1. Go to **Code > New codespace** to open up a development environment for your new branch.
-
-<img src="./assets/images/createcodespace.gif" width="400px" >
+1. Choose one of the following setups:
+    * Use GitHub Codespaces
+        1. Go to **Code > New codespace** to open up a development environment for your new branch.
+        <img src="./assets/images/createcodespace.gif" width="400px" >
+    * Install the dependencies locally:
+        * [Visual Studio Code](https://code.visualstudio.com/Download)
+        * [OpenJDK 11](https://docs.microsoft.com/en-us/java/openjdk/download#openjdk-11)
+            * NOTE: If you run **java --version** and get an 11.x version, there is no need to install a new JDK
+            * [Windows installation instructions](https://docs.microsoft.com/en-us/java/openjdk/install#install-on-windows)
+            * [macOS installation instructions](https://docs.microsoft.com/en-us/java/openjdk/install#install-on-macos)
+        * [Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools)
+        * [Apache Maven](https://maven.apache.org/)
+        * Visual Studio Code Extensions
+            * [Java Development Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
+            * [Azure Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-node-azure-pack)
+            * [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+1. Ensure you have an Azure subscription. You can get a [free subscription](https://azure.microsoft.com/en-us/free) if you need one.
 
 ## Set Up common Azure Resources
 
@@ -61,7 +77,7 @@ The Order Management App is a Single Page Application (Angular) that has been tr
         * Index document name: index.html
         * Error document path: index.html
 1. Deploy the application to your Storage Account
-    1. In your Codespace, right click on **order-management-app** and select **Deploy to Static Website via Azure Storage...**
+    1. In Visual Studio Code, right click on **order-management-app** and select **Deploy to Static Website via Azure Storage...**
     1. Select your storage account
 1. Add the Application Insights information to the App
     1. Navigate to the App (<https://[storageaccountname>].z13.web.core.windows.net)
@@ -104,8 +120,9 @@ The Customer API is a Spring API that interacts with Customer database to track 
     1. In the [Azure Portal](https://portal.azure.com), create an Azure App Service Web App
         * Basics > Name: customer-api-[uniquename]-app
         * Basics > Runtime stack: Java 11
-        * Basics > Linux Plan: Create New
-            * Name: customer-api-plan
+        * Basics > Operating System: Windows
+        * Basics > Windows Plan: Create New
+            * Name: customer-api-[uniquename]-plan
         * Basics > Sku and size: Dev/Test B1
         * Monitoring > Enable Application Insights: Yes
         * Monitoring > Application Insights > order-management-[uniquename]-ai
