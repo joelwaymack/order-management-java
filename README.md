@@ -77,7 +77,7 @@ The Order Management App is a Single Page Application (Angular) that has been tr
         * Index document name: index.html
         * Error document path: index.html
 1. Deploy the application to your Storage Account
-    1. In your Codespace, right click on **order-management-app** and select **Deploy to Static Website via Azure Storage...**
+    1. In Visual Studio Code, right click on **order-management-app** and select **Deploy to Static Website via Azure Storage...**
     1. Select your storage account
 1. Add the Application Insights information to the App
     1. Navigate to the App (<https://[storageaccountname>].z13.web.core.windows.net)
@@ -122,7 +122,7 @@ The Customer API is a Spring API that interacts with Customer database to track 
         * Basics > Runtime stack: Java 11
         * Basics > Operating System: Windows
         * Basics > Windows Plan: Create New
-            * Name: customer-api-plan
+            * Name: customer-api-[uniquename]-plan
         * Basics > Sku and size: Dev/Test B1
         * Monitoring > Enable Application Insights: Yes
         * Monitoring > Application Insights > order-management-[uniquename]-ai
